@@ -33,7 +33,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
           <div className="flex items-center justify-between">
             <span className="text-lg font-bold">{tool.starting_price}</span>
             
-              href={tool.website_url}
+             <ahref={tool.website_url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
