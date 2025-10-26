@@ -140,7 +140,7 @@ export default function ToolDetailPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl p-6 shadow-sm sticky top-4">
               
-                href={tool.affiliate_link || tool.website_url}
+               <a href={tool.affiliate_link || tool.website_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold mb-4"
