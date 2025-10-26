@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Tool } from '@/lib/supabase'
 import { ExternalLink, Star } from 'lucide-react'
 
@@ -8,8 +9,13 @@ interface ToolCardProps {
 }
 
 export default function ToolCard({ tool }: ToolCardProps) {
+  const router = useRouter()
+
   return (
-    <div className="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow">
+    <div 
+      onClick={() => router.push(`/tools/${tool.id}`)}
+      className="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer"
+    >
       <div className="flex items-start gap-4">
         <div className="w-16 h-16 rounded-lg border flex-shrink-0 bg-gray-50 flex items-center justify-center">
           <span className="text-2xl font-bold text-gray-400">{tool.name.charAt(0)}</span>
@@ -21,7 +27,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
               <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
             )}
           </div>
-          <p className="text-gray-600 text-sm mb-3">{tool.description}</p>
+          <p className="text-gray-600 text-sm mb-3 line-clamp-2">{tool.description}</p>
           <div className="flex flex-wrap gap-2 mb-3">
             <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">
               {tool.category}
@@ -32,15 +38,16 @@ export default function ToolCard({ tool }: ToolCardProps) {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-lg font-bold">{tool.starting_price}</span>
-            
-             <a href={tool.website_url}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                router.push(`/tools/${tool.id}`)
+              }}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
             >
-              Visit Site
+              View Details
               <ExternalLink className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
